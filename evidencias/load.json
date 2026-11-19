@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-17T13:57:20.626Z",
+  "profile": "load",
+  "endpoint": "GET /api/tickets?page=1",
+  "maxVus": 20,
+  "samples": 1970,
+  "elapsedMs": 25106.200268,
+  "duration": {
+    "avg": 4.83857514619289,
+    "med": 4.6899385,
+    "p(90)": 5.4619484,
+    "p(95)": 5.846052449999999,
+    "p(99)": 9.243839889999999,
+    "max": 22.727756
+  },
+  "errorRate": 0,
+  "thresholds": {
+    "p(95)<400": {
+      "ok": true
+    },
+    "rate<0.01": {
+      "ok": true
+    },
+    "rate>0.99": {
+      "ok": true
+    }
+  }
+}

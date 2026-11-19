@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-17T13:55:12.821Z",
+  "base": "http://localhost:8097",
+  "cases": [
+    {
+      "name": "Inicio web, Swagger y salud de PostgreSQL",
+      "pass": true,
+      "ms": 86
+    },
+    {
+      "name": "Inicio de sesión de cuatro perfiles",
+      "pass": true,
+      "ms": 96
+    },
+    {
+      "name": "Credenciales inválidas y autenticación obligatoria",
+      "pass": true,
+      "ms": 52
+    },
+    {
+      "name": "Validación de entrada y creación de solicitud",
+      "pass": true,
+      "ms": 19
+    },
+    {
+      "name": "Visibilidad por propietario y sede",
+      "pass": true,
+      "ms": 34
+    },
+    {
+      "name": "Permisos y transiciones válidas",
+      "pass": true,
+      "ms": 46
+    },
+    {
+      "name": "Worker entrega dos notificaciones sin duplicarlas",
+      "pass": true,
+      "ms": 519
+    },
+    {
+      "name": "Chat integrado y validación del mensaje",
+      "pass": true,
+      "ms": 10
+    }
+  ]
+}

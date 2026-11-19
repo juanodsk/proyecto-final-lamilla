@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-17T13:57:50.227Z",
+  "profile": "stress",
+  "endpoint": "GET /api/tickets?page=1",
+  "maxVus": 100,
+  "samples": 8955,
+  "elapsedMs": 28131.981334,
+  "duration": {
+    "p(99)": 36.55912861999997,
+    "max": 60.016958,
+    "avg": 6.39517215131213,
+    "med": 4.313538,
+    "p(90)": 11.467103000000002,
+    "p(95)": 19.571319099999986
+  },
+  "errorRate": 0,
+  "thresholds": {
+    "p(95)<1000": {
+      "ok": true
+    },
+    "rate<0.05": {
+      "ok": true
+    },
+    "rate>0.99": {
+      "ok": true
+    }
+  }
+}

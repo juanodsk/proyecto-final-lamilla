@@ -1,0 +1,74 @@
+name: lamilla
+x-backend: &backend
+  build: ./backend
+  init: true
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: lamilla
+      POSTGRES_USER: lamilla
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Configura POSTGRES_PASSWORD}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "lamilla", "-d", "lamilla"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+  migrate:
+    <<: *backend
+    environment:
+      DATABASE_URL: postgresql://lamilla:${POSTGRES_PASSWORD:?Configura POSTGRES_PASSWORD}@db:5432/lamilla
+      DEMO_SEED: ${DEMO_SEED:-false}
+    command: ["sh", "-c", "./node_modules/.bin/prisma migrate deploy && node src/seed.js"]
+    depends_on:
+      db:
+        condition: service_healthy
+  api:
+    <<: *backend
+    environment:
+      DATABASE_URL: postgresql://lamilla:${POSTGRES_PASSWORD:?Configura POSTGRES_PASSWORD}@db:5432/lamilla
+      JWT_SECRET: ${JWT_SECRET:?Configura JWT_SECRET}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENROUTER_MODEL: ${OPENROUTER_MODEL:-openrouter/auto}
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+    restart: unless-stopped
+  worker:
+    <<: *backend
+    environment:
+      DATABASE_URL: postgresql://lamilla:${POSTGRES_PASSWORD:?Configura POSTGRES_PASSWORD}@db:5432/lamilla
+    command: ["node", "src/worker.js"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+  frontend:
+    build: ./frontend
+    ports:
+      - "127.0.0.1:${APP_PORT:-8097}:8080"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+  k6:
+    image: grafana/k6:1.0.0
+    profiles: [quality]
+    user: "0:0"
+    volumes:
+      - ./pruebas:/scripts:ro
+      - ./evidencias:/results
+    environment:
+      BASE_URL: http://frontend:8080
+      PROFILE: ${LOAD_PROFILE:-load}
+    command: ["run", "/scripts/load.js"]
+volumes:
+  postgres:

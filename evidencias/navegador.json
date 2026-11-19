@@ -1,0 +1,11 @@
+{
+  "browser": "157.0.4341.60",
+  "base": "http://localhost:8097",
+  "cases": [
+    "El estudiante crea una solicitud y abre su detalle.",
+    "El chat presenta una respuesta y muestra su fuente.",
+    "El agente completa la transición y el estudiante recibe ambas notificaciones.",
+    "El enlace de salto funciona con teclado y el panel móvil evita desplazamiento horizontal.",
+    "Swagger UI carga el contrato en el navegador."
+  ]
+}
