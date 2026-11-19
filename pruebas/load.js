@@ -20,7 +20,7 @@ export const options = {
 
 export function setup() {
   const response = http.post(base + '/api/auth/login', JSON.stringify({
-    email: 'agente@lamilla.test', password: 'LamillaDemo2026!',
+    email: 'agente@proyectofinal.test', password: 'LamillaDemo2026!',
   }), { headers: { 'Content-Type': 'application/json' } });
   if (response.status !== 200) throw new Error('El perfil de carga necesita DEMO_SEED=true.');
   return { token: response.json('token') };

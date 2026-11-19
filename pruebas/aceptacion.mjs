@@ -23,7 +23,7 @@ async function call(path, { token, method = 'GET', body, status = 200 } = {}) {
   return await result.json();
 }
 const login = async (alias, status = 200, password = 'LamillaDemo2026!') =>
-  call('/auth/login', { method: 'POST', status, body: { email: alias + '@lamilla.test', password } });
+  call('/auth/login', { method: 'POST', status, body: { email: alias + '@proyectofinal.test', password } });
 const payload = { title: 'Prueba de aceptación ' + new Date().toISOString(), description: 'Caso sintético para verificar el ciclo de atención.', category: 'ACCESS' };
 let student, otherStudent, agent, otherAgent, ticket;
 

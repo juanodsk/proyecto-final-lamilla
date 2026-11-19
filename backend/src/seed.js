@@ -10,8 +10,14 @@ try {
       ['norte', 'Sara Ortiz', 'STUDENT', 'NORTE'],
       ['agente.norte', 'Andrés Pérez', 'AGENT', 'NORTE'],
     ]) {
-      const email = alias + '@lamilla.test';
-      await db.user.upsert({ where: { email }, update: {}, create: { email, name, role, campus, passwordHash } });
+      const email = alias + '@proyectofinal.test';
+      await db.$transaction(async tx => {
+        await tx.user.updateMany({
+          where: { email: alias + '@lamilla.test' },
+          data: { email },
+        });
+        await tx.user.upsert({ where: { email }, update: {}, create: { email, name, role, campus, passwordHash } });
+      });
     }
   }
 } finally {

@@ -15,7 +15,7 @@ const password = 'LamillaDemo2026!';
 
 async function login(page, alias) {
   await page.goto(base, { waitUntil: 'domcontentloaded' });
-  await page.getByLabel('Correo institucional').fill(alias + '@lamilla.test');
+  await page.getByLabel('Correo institucional').fill(alias + '@proyectofinal.test');
   await page.getByLabel('Contraseña', { exact: true }).fill(password);
   await page.getByRole('button', { name: 'Ingresar' }).click();
   await page.getByRole('button', { name: 'Cerrar sesión' }).waitFor();

@@ -14,10 +14,10 @@ El archivo `.env` local ya está preparado. En otro equipo copia `.env.example` 
 
 | Perfil | Correo de demostración |
 | --- | --- |
-| Estudiante Central | estudiante@lamilla.test |
-| Agente Central | agente@lamilla.test |
-| Estudiante Norte | norte@lamilla.test |
-| Agente Norte | agente.norte@lamilla.test |
+| Estudiante Central | estudiante@proyectofinal.test |
+| Agente Central | agente@proyectofinal.test |
+| Estudiante Norte | norte@proyectofinal.test |
+| Agente Norte | agente.norte@proyectofinal.test |
 
 Contraseña compartida: `LamillaDemo2026!`. Las cuentas son sintéticas y el puerto se publica solo en loopback. `DEMO_SEED=false` omite la carga inicial. En un volumen existente conserva las cuentas ya cargadas.
 

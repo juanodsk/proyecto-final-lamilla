@@ -3,7 +3,7 @@ $base = if ($env:BASE_URL) { $env:BASE_URL } else { 'http://localhost:8097' }
 $headers = @{}
 foreach ($alias in 'estudiante','agente') {
     $login = Invoke-RestMethod "$base/api/auth/login" -Method Post -ContentType 'application/json' -Body (@{
-        email = "$alias@lamilla.test"
+        email = "$alias@proyectofinal.test"
         password = 'LamillaDemo2026!'
     } | ConvertTo-Json)
     $headers[$alias] = @{ Authorization = "Bearer $($login.token)" }
